@@ -1,30 +1,60 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-     <h1>Review Page</h1>
+    <html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-   
     <body onload="myFunction()">
-
-<div class="review" id="demo"></div>
-
- 
-
+        <div class="review" id="demo"></div>
+        
+        
+        
 <script>
+    
+var html = [];
+var element;
+    
 function myFunction() {
-var url_string= window.location
-        var url = new URL(url_string);
-   
-var dataFrom_LWC = url.searchParams.get("data");
-    console.log('dataFrom_LWC'+dataFrom_LWC);
 
- 
+    var url_string = window.location
+    var url = new URL(url_string);
 
-   document.getElementById("demo").innerHTML = dataFrom_LWC;
+    var dataString = url.searchParams.get("data");
+    
+    var dataObject = JSON.parse(dataString);
+    
+    createList(dataObject);
+    
+    
+    var htmlData = html.join('');
+    
+    console.log('htmlData' + htmlData);
+    document.getElementById("demo").innerHTML = htmlData;
+    
+    
+    
+    
 }
+
+
+function createList(arr) {
+
+    html.push("<ul class='list-group cd-accordion-menu animated'>");
+        for(element of arr){
+            html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name="+element.lineItemId+" id="+element.lineItemId+" ><label class='m-0' for="+element.lineItemId+"><div class='row'><div class='col-sm-3' style='width:100px'>"+element.productName+"</div><div class='col-sm-3'>"+element.actionSub+"</div><div class='col-sm-3'>"+element.oneTimeCharge+"</div><div class='col-sm-3'>"+element.recurringCharge+"</div><div class='col-sm-3'></div></div></label>");
+            if (element._children) {
+                createList(element._children);
+            }
+        html.push("</li>");
+        }
+    html.push("</ul>");
+
+}
+    
+
 </script>
- <style>
+
+<style>
 *,
 *::after,
 *::before {
@@ -32,11 +62,11 @@ var dataFrom_LWC = url.searchParams.get("data");
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 50%;
 }
 
 body {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-family: "Jaldi", sans-serif;
   color: #ffffff;
   /*
@@ -55,7 +85,7 @@ h1 {
   text-align: center;
   width: 90%;
   margin: 2em auto 0;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   color: #507b55;
   font-weight: bold;
 }
@@ -114,10 +144,10 @@ Main Components
   position: relative;
   display: block;
   padding: 18px 18px 18px 64px;
-  background: #4d5158;
-  box-shadow: inset 0 -1px #555960;
-  color: #ffffff;
-  font-size: 1.6rem;
+  background: #ffffff;
+  /*box-shadow: inset 0 -1px #555960;*/
+  color: #000000;
+
 }
 
 .no-touch .cd-accordion-menu label:hover,
@@ -161,6 +191,7 @@ Main Components
   -ms-transform: translateY(-50%) rotate(-90deg);
   -o-transform: translateY(-50%) rotate(-90deg);
   transform: translateY(-50%) rotate(-90deg);
+    color: #000000;
 }
 
 .cd-accordion-menu label::after {
@@ -200,8 +231,8 @@ height:auto
 
 .cd-accordion-menu ul label,
 .cd-accordion-menu ul a {
-  background: #35383d;
-  box-shadow: inset 0 -1px #41444a;
+  background: #ffffff;
+  /*box-shadow: inset 0 -1px #41444a;*/
   padding-left: 82px;
 }
 
@@ -258,7 +289,7 @@ height:auto
   .cd-accordion-menu label,
   .cd-accordion-menu a {
     padding: 24px 24px 24px 82px;
-    font-size: 1.9rem;
+  
   }
   .cd-accordion-menu label::before {
     left: 24px;
@@ -306,9 +337,12 @@ height:auto
   -webkit-transition: -webkit-transform 0.3s;
   -moz-transition: -moz-transform 0.3s;
   transition: transform 0.3s;
-}        
-        
+}    
+.m-0{
+  font-size: 15px;  
+}  
 </style>
 
-</body>
-</html>
+    </body>
+
+    </html>
