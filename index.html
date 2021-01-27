@@ -28,11 +28,11 @@ function myFunction() {
     
     var htmlData = html.join('');
     
-    console.log('htmlData' + htmlData);
+   // console.log('htmlData' + htmlData);
     document.getElementById("demo").innerHTML = htmlData;
     
     var x = document.querySelectorAll("#null");
-    console.log(x);
+    //console.log(x);
     for(var i=0;i<x.length;i++){
     x[i].style.display = "block";
  
@@ -45,7 +45,7 @@ function createList(arr) {
     html.push("<ul class='list-group cd-accordion-menu animated'>");
         for(element of arr){
             if (!element._children){
-                console.log('no childrens');
+                //console.log('no childrens');
              html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='"+element.lineItemId+"' id='"+element.lineItemId+"'><label class='m-0 hide-arrow' style='color:black' for='"+element.lineItemId+"'><div class='row'><div class='col-sm-3 item-class' style='width:100px'>"+element.productName+"</div><div class='col-sm-3'>"+element.actionSub+"</div><div class='col-sm-2' style='text-align:center;'>"+element.oneTimeCharge+"</div><div class='col-sm-2'style='text-align:center;'>"+element.recurringCharge+"</div><div class='col-sm-2 trashbutton'id='"+element.parentItemId+"' style='text-align:right;display:none'><button type='button' style='border-style:none;background-color: white;font-size: 16px;' id='"+element.lineItemId+"' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></label>");
             }
             else{
