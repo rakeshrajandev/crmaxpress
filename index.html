@@ -44,7 +44,7 @@ function createList(arr) {
 
     html.push("<ul class='list-group cd-accordion-menu animated'>");
         for(element of arr){
-            html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='"+element.lineItemId+"' id='"+element.lineItemId+"' ><label class='m-0' style='color:black' for='"+element.lineItemId+"'><div class='row'><div class='col-sm-3' style='width:100px'\>"+element.productName+"</div><div class='col-sm-3'>"+element.actionSub+"</div><div class='col-sm-2' style='text-align:center;'>"+element.oneTimeCharge+"</div><div class='col-sm-2'style='text-align:center;'>"+element.recurringCharge+"</div><div class='col-sm-2 trashbutton'id='"+element.parentItemId+"' style='text-align:right;display:none'><button type='button' style='border-style:none;background-color: white;font-size: 16px;' id='"+element.lineItemId+"' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></label>");
+            html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='"+element.lineItemId+"' id='"+element.lineItemId+"' ><label class='m-0' style='color:black' for='"+element.lineItemId+"'><div class='row'><div class='col-sm-3 itemClass' style='width:100px'\>"+element.productName+"</div><div class='col-sm-3'>"+element.actionSub+"</div><div class='col-sm-2' style='text-align:center;'>"+element.oneTimeCharge+"</div><div class='col-sm-2'style='text-align:center;'>"+element.recurringCharge+"</div><div class='col-sm-2 trashbutton'id='"+element.parentItemId+"' style='text-align:right;display:none'><button type='button' style='border-style:none;background-color: white;font-size: 16px;' id='"+element.lineItemId+"' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></label>");
             if (element._children) {
                 createList(element._children);
             }
@@ -272,7 +272,7 @@ height:auto
 }
 /*
 .cd-accordion-menu ul label::before {
-  /*left: 36px;*
+  left: 36px;
 }
 
 .cd-accordion-menu ul label::after,
@@ -282,30 +282,30 @@ height:auto
 
 .cd-accordion-menu ul ul label,
 .cd-accordion-menu ul ul a {
-  /*padding-left: 100px;*
+  padding-left: 100px;
 }
 
 .cd-accordion-menu ul ul label::before {
-  /*left: 54px;*
+  left: 54px;
 }
 
 .cd-accordion-menu ul ul label::after,
 .cd-accordion-menu ul ul a::after {
-  /*left: 77px;*
+  left: 77px;
 }
 
 .cd-accordion-menu ul ul ul label,
 .cd-accordion-menu ul ul ul a {
-  /*padding-left: 118px;*
+  padding-left: 118px;
 }
 
 .cd-accordion-menu ul ul ul label::before {
-  /*left: 72px;*
+  left: 72px;
 }
 
 .cd-accordion-menu ul ul ul label::after,
 .cd-accordion-menu ul ul ul a::after {
-  /*left: 95px;*
+  left: 95px;
 }
 
 @media only screen and (min-width: 600px) {
@@ -322,10 +322,10 @@ height:auto
   }
   .cd-accordion-menu ul label,
   .cd-accordion-menu ul a {
-    /*padding-left: 106px;*
+    padding-left: 106px;
   }
   .cd-accordion-menu ul label::before {
-    /*left: 48px;*
+    left: 48px;
   }
   .cd-accordion-menu ul label::after,
   .cd-accordion-menu ul a::after {
@@ -333,10 +333,10 @@ height:auto
   }
   .cd-accordion-menu ul ul label,
   .cd-accordion-menu ul ul a {
-    /*padding-left: 130px;
+    padding-left: 130px;
   }
   .cd-accordion-menu ul ul label::before {
-    /*left: 72px;*
+    left: 72px;
   }
   .cd-accordion-menu ul ul label::after,
   .cd-accordion-menu ul ul a::after {
@@ -355,6 +355,90 @@ height:auto
   }
 }
     */
+    
+.cd-accordion-menu ul label::before {
+  left: 36px;
+}
+
+.cd-accordion-menu ul label::after,
+.cd-accordion-menu ul a::after {
+  left: 59px;
+}
+
+.cd-accordion-menu ul ul label,
+.cd-accordion-menu ul ul a {
+  padding-left: 100px;
+}
+
+.cd-accordion-menu ul ul label::before {
+  left: 54px;
+}
+
+.cd-accordion-menu ul ul label::after,
+.cd-accordion-menu ul ul a::after {
+  left: 77px;
+}
+
+.cd-accordion-menu ul ul ul label,
+.cd-accordion-menu ul ul ul a {
+  padding-left: 118px;
+}
+
+.cd-accordion-menu ul ul ul label::before {
+  left: 72px;
+}
+
+.cd-accordion-menu ul ul ul label::after,
+.cd-accordion-menu ul ul ul a::after {
+  left: 95px;
+}
+
+@media only screen and (min-width: 600px) {
+  .cd-accordion-menu label,
+  .cd-accordion-menu a {
+    padding: 24px 24px 24px 82px;
+  
+  }
+  .cd-accordion-menu label::before {
+    left: 24px;
+  }
+  .cd-accordion-menu label::after {
+    left: 53px;
+  }
+  .cd-accordion-menu ul label,
+  .cd-accordion-menu ul a {
+    padding-left: 106px;
+  }
+  .cd-accordion-menu ul label::before {
+    left: 48px;
+  }
+  .cd-accordion-menu ul label::after,
+  .cd-accordion-menu ul a::after {
+    left: 77px;
+  }
+  .cd-accordion-menu ul ul label,
+  .cd-accordion-menu ul ul a {
+    padding-left: 130px;
+  }
+  .cd-accordion-menu ul ul label::before {
+    left: 72px;
+  }
+  .cd-accordion-menu ul ul label::after,
+  .cd-accordion-menu ul ul a::after {
+    left: 101px;
+  }
+  .cd-accordion-menu ul ul ul label,
+  .cd-accordion-menu ul ul ul a {
+    padding-left: 154px;
+  }
+  .cd-accordion-menu ul ul ul label::before {
+    left: 96px;
+  }
+  .cd-accordion-menu ul ul ul label::after,
+  .cd-accordion-menu ul ul ul a::after {
+    left: 125px;
+  }
+}
 
 .cd-accordion-menu.animated label::before {
   /* this class is used if you're using jquery to animate the accordion */
