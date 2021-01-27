@@ -48,11 +48,11 @@ function createList(arr) {
             console.log('element._children'+element._children);
             if (element._children) {
                 createList(element._children);
-            }/*
+            }
             else{
-                var element = document.getElementById(".m-0");
+                var element = document.getElementsByClassName("m-0");
                 element.classList.add("hide-arrow");
-            }*/
+            }
         html.push("</li>");
         }
     html.push("</ul>");
