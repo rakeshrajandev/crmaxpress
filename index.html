@@ -64,7 +64,7 @@ function createList(arr) {
 
 function myDeleteFunction(event){
     var selectedLineItemId = event.id;
-    alert('selectedLineItemId: '+JSON.stringify(selectedLineItemId));
+    //alert('selectedLineItemId: '+JSON.stringify(selectedLineItemId));
    
     window.parent.postMessage([selectedLineItemId], '*');
     
