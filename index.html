@@ -34,7 +34,7 @@ function myFunction() {
     
     nullIdList = document.querySelectorAll("#null");
     console.log(nullIdList);
-    
+    //var len= nullIdList.length-1;
     for(i=0;i<nullIdList.length;i++){
     /*
     targetElement = document.getElementsByClassName("item-class")[i];
@@ -55,14 +55,14 @@ function myFunction() {
         targetParent = nullIdList[i].parentElement;
         
         targetChild = targetParent.firstElementChild;
+        console.log(targetChild);
         textLabel = targetChild.textContent;
         console.log(textLabel);
-    if(textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") {
-         continue;
-    }
+  //  if(textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") {
+        // continue; }
    
          nullIdList[i].style.display = "block";
-    }
+    
   }   
 }
 
