@@ -34,8 +34,8 @@ function myFunction() {
     
     nullIdList = document.querySelectorAll("#null");
     console.log(nullIdList);
-    //var len= nullIdList.length-1;
-    for(i=0;i<nullIdList.length;i++){
+    var len= nullIdList.length-1;
+    for(i=0;i<len;i++){
     /*
     targetElement = document.getElementsByClassName("item-class")[i];
         
@@ -50,7 +50,7 @@ function myFunction() {
     console.log(targetChild);
         
     targetChild.style.display = "block";
-    */
+    
         
         targetParent = nullIdList[i].parentElement;
         
@@ -58,6 +58,7 @@ function myFunction() {
         console.log(targetChild);
         textLabel = targetChild.textContent;
         console.log(textLabel);
+        */
   //  if(textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") {
         // continue; }
    
