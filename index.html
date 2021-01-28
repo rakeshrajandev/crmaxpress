@@ -53,16 +53,16 @@ function myFunction() {
     */
         
         targetParent = nullIdList[i].parentElement;
-        console.log(targetParent);
+        
         targetChild = targetParent.firstElementChild;
         textLabel = targetChild.textContent;
-        
+        console.log(textLabel);
     if(textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") {
-         continue; 
-    }
+         
+    else{
    
          nullIdList[i].style.display = "block";
-
+    }
   }   
 }
 
