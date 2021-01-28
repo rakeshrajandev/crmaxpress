@@ -33,9 +33,6 @@ function myFunction() {
     document.getElementById("demo").innerHTML = htmlData;
     
     nullIdList = document.querySelectorAll("#null");
-    console.log(nullIdList);
-    var len= nullIdList.length-1;
-    //for(i=0;i<len;i++){
         
    for(i=0;i<nullIdList.length;i++){
         targetParent = nullIdList[i].parentElement;
@@ -43,12 +40,12 @@ function myFunction() {
         targetChild = targetParent.firstElementChild;
         //console.log(targetChild);
         textLabel = targetChild.textContent;
-        console.log(textLabel);
+  
         if(textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") {
-        console.log('found');    
+  
         }
         else{
-        console.log('Not found');
+   
         nullIdList[i].style.display = "block";
         }
    }    
