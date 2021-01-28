@@ -15,28 +15,32 @@ var html = [];
 var element;
     
 function myFunction() {
+     
+    var url_string, url, dataString, dataObject, htmlData, nullIdList, i, textLabel;
+    url_string = window.location
+    url = new URL(url_string);
 
-    var url_string = window.location
-    var url = new URL(url_string);
-
-    var dataString = url.searchParams.get("data");
+    dataString = url.searchParams.get("data");
     
-    var dataObject = JSON.parse(dataString);
+    dataObject = JSON.parse(dataString);
     
     createList(dataObject);
     
     
-    var htmlData = html.join('');
+    htmlData = html.join('');
     
     console.log('htmlData' + htmlData);
     document.getElementById("demo").innerHTML = htmlData;
     
-    var x = document.querySelectorAll("#null");
+    nullIdList = document.querySelectorAll("#null");
     console.log(x);
-    var len= x.length-1;
-    for(var i=0;i<len;i++){
+    
+    for(i=0;i<x.length;i++){
+    textLabel = document.getElementsByClassName("item-class")[i].textContent;
+    if(textLabel !== "Standard Shipping Fee" || textLabel !== "Premium Shipping Fee" || textLabel !== "Replacement Fee" || textLabel !== "Number Change Fee") {
+        
     x[i].style.display = "block";
- 
+    }    
   }   
 }
 
@@ -65,8 +69,6 @@ function createList(arr) {
 
 function myDeleteFunction(event){
     var selectedLineItemId = event.id;
-    //alert('selectedLineItemId: '+JSON.stringify(selectedLineItemId));
-   
     window.parent.postMessage([selectedLineItemId], '*');
     
 }
