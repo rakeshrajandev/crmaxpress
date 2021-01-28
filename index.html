@@ -45,24 +45,24 @@ function myFunction() {
     targetParent = targetElement.parentElement;
          console.log(targetParent);
     targetParent = targetElement.parentElement;
-         console.log(targetParent);
+    console.log(targetParent);
     targetChild =  targetParent.lastElementChild;
-         console.log(targetChild);
+    console.log(targetChild);
         
-        targetChild.style.display = "block";
-*/
+    targetChild.style.display = "block";
+    */
         
         targetParent = nullIdList[i].parentElement;
         console.log(targetParent);
-    // if(textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") 
+        targetChild = targetParent.firstElementChild;
+        textLabel = targetChild.textContent;
         
-       
-    
-       
-      
+    if(textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") {
+         continue; 
+    }
    
          nullIdList[i].style.display = "block";
-    //}
+
   }   
 }
 
