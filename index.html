@@ -16,7 +16,7 @@ var element;
     
 function myFunction() {
      
-    var url_string, url, dataString, dataObject, htmlData, nullIdList, i, textLabel;
+    var url_string, url, dataString, dataObject, htmlData, nullIdList, i, targetElement, textLabel, targetParent, targetChild;
     url_string = window.location
     url = new URL(url_string);
 
@@ -36,12 +36,25 @@ function myFunction() {
     console.log(nullIdList);
     
     for(i=0;i<nullIdList.length;i++){
-    textLabel = document.getElementsByClassName("item-class")[i].textContent;
     
-    if(textLabel !== "Standard Shipping Fee" || textLabel !== "Premium Shipping Fee" || textLabel !== "Replacement Fee" || textLabel !== "Number Change Fee") {
-        console.log(textLabel);
-        nullIdList[i].style.display = "block";
-    }
+    targetElement = document.getElementsByClassName("item-class")[i];
+        
+    textLabel = targetElement.textContent;
+    console.log(textLabel);
+        /*
+    targetParent = targetElement.parentElement;
+    targetParent = targetElement.parentElement;
+    targetChild =  targetParent.lastElementChild;
+     if(textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") {
+        
+       
+    }else{
+        */
+        if(textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") 
+            continue;
+   
+         nullIdList[i].style.display = "block";
+    //}
   }   
 }
 
