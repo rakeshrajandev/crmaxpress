@@ -37,10 +37,11 @@ function myFunction() {
     
     for(i=0;i<nullIdList.length;i++){
     textLabel = document.getElementsByClassName("item-class")[i].textContent;
-    console.log(textLabel);
-    //if(textLabel !== "Standard Shipping Fee" || textLabel !== "Premium Shipping Fee" || textLabel !== "Replacement Fee" || textLabel !== "Number Change Fee") {
-    nullIdList[i].style.display = "block";
-    //}
+    
+    if(textLabel !== "Standard Shipping Fee" || textLabel !== "Premium Shipping Fee" || textLabel !== "Replacement Fee" || textLabel !== "Number Change Fee") {
+        console.log(textLabel);
+        nullIdList[i].style.display = "block";
+    }
   }   
 }
 
