@@ -41,19 +41,22 @@ function myFunction() {
         
     textLabel = targetElement.textContent;
     console.log(textLabel);
-        /*
+       
     targetParent = targetElement.parentElement;
+         console.log(targetParent);
     targetParent = targetElement.parentElement;
+         console.log(targetParent);
     targetChild =  targetParent.lastElementChild;
-     if(textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") {
+         console.log(targetChild);
+        targetChild.style.color = "red";
+    // if(textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") 
         
        
-    }else{
-        */
-        if(textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") 
-            continue;
+    
+       
+      
    
-         nullIdList[i].style.display = "block";
+         //nullIdList[i].style.display = "block";
     //}
   }   
 }
