@@ -57,10 +57,10 @@ function createList(arr) {
         for(element of arr){
             if (!element._children){
                 //console.log('no childrens');
-             html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='"+element.lineItemId+"' id='"+element.lineItemId+"'><label class='m-0 hide-arrow' style='color:black' for='"+element.lineItemId+"'><div class='row'><div class='col-sm-3 item-class' style='width:100px'>"+element.productName+"</div><div class='col-sm-3'>"+element.actionSub+"</div><div class='col-sm-2' style='text-align:center;'>"+element.oneTimeCharge+"</div><div class='col-sm-2'style='text-align:center;'>"+element.recurringCharge+"</div><div class='col-sm-1 trashbutton'id='"+element.parentItemId+"' style='text-align:right;display:none'><button type='button' style='border-style:none;background-color: white;font-size: 16px; color:#d24a4a' id='"+element.lineItemId+"' onclick='myDeleteFunction(this)'><i class='bi bi-trash'></i></button></div></div></label>");
+             html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='"+element.lineItemId+"' id='"+element.lineItemId+"'><label class='m-0 hide-arrow' style='color:black' for='"+element.lineItemId+"'><div class='row'><div class='col-sm-3 item-class' style='width:100px'>"+element.productName+"</div><div class='col-sm-3'>"+element.actionSub+"</div><div class='col-sm-2' style='text-align:center;'>"+element.oneTimeCharge+"</div><div class='col-sm-2'style='text-align:center;'>"+element.recurringCharge+"</div><div class='col-sm-1 trashbutton'id='"+element.parentItemId+"' style='text-align:right;display:none'><button type='button' style='border-style:none;background-color: white;font-size: 16px;' id='"+element.lineItemId+"' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></label>");
             }
             else{
-             html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='"+element.lineItemId+"' id='"+element.lineItemId+"'><label class='m-0' style='color:black' for='"+element.lineItemId+"'><div class='row'><div class='col-sm-3 item-class' style='width:100px'>"+element.productName+"</div><div class='col-sm-3'>"+element.actionSub+"</div><div class='col-sm-2' style='text-align:center;'>"+element.oneTimeCharge+"</div><div class='col-sm-2'style='text-align:center;'>"+element.recurringCharge+"</div><div class='col-sm-1 trashbutton'id='"+element.parentItemId+"' style='text-align:right;display:none'><button type='button' style='border-style:none;background-color: white;font-size: 16px; color:#d24a4a' id='"+element.lineItemId+"' onclick='myDeleteFunction(this)'><i class='bi bi-trash'></i></button></div></div></label>");
+             html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='"+element.lineItemId+"' id='"+element.lineItemId+"'><label class='m-0' style='color:black' for='"+element.lineItemId+"'><div class='row'><div class='col-sm-3 item-class' style='width:100px'>"+element.productName+"</div><div class='col-sm-3'>"+element.actionSub+"</div><div class='col-sm-2' style='text-align:center;'>"+element.oneTimeCharge+"</div><div class='col-sm-2'style='text-align:center;'>"+element.recurringCharge+"</div><div class='col-sm-1 trashbutton'id='"+element.parentItemId+"' style='text-align:right;display:none'><button type='button' style='border-style:none;background-color: white;font-size: 16px;' id='"+element.lineItemId+"' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></label>");
                
             }
             if (element._children) {
@@ -229,13 +229,13 @@ Main Components
 
 .cd-accordion-menu label::after {
   /* folder icons */
-  left: 0px;/*41px;*/
+  left: 41px;
   background-position: -16px 0;
 }
 
 .cd-accordion-menu a::after {
   /* image icon */
-  left: 0px; /*36px;*/
+  left: 36px;
   background:
   url(https://firebasestorage.googleapis.com/v0/b/imageshop-ac764.appspot.com/o/app?alt=media&token=7c2360de-2516-4e2a-b526-f9d9235e5189) no-repeat -48px 0;
   /*    
@@ -360,9 +360,10 @@ height:auto
   .cd-accordion-menu ul ul ul a::after {
     left: 125px;
   }
-}
+}div.item-class
     */
-
+    
+    
     
  .cd-accordion-menu ul label div.item-class::before {
   left: 36px;
