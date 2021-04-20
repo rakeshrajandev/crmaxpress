@@ -23,10 +23,10 @@
             url_string = window.location
             url = new URL(url_string);
 
-            dataString = url.searchParams.get("data");
+            //dataString = url.searchParams.get("data");
 
-            dataObject = JSON.parse(dataString);
-
+            //dataObject = JSON.parse(dataString);
+            dataObject = url.searchParams.get("data");
             createList(dataObject);
 
 
@@ -59,9 +59,9 @@
             for (element of arr) {
                 if (!element._children) {
                     //console.log('no childrens');
-                    html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='" + element.lineItemId + "' id='" + element.lineItemId + "'><label class='m-0 hide-arrow' style='color:black' for='" + element.lineItemId + "'><div class='row'><!--div class='col-4 item-class p-0'></div--><div class='col-12 item-class'><div class='itemName'>" + element.productName + "</div><div class='itemAction'>Action / Sub action : " + element.actionSub + "</div><div class='ItemCharges'>Onetime Charge : $ " + element.oneTimeCharge + "</div><div class='ItemCharges'>Recurring Charge : $ " + element.recurringCharge + "</div><div class='trashbutton'id='" + element.parentItemId + "' style='display:none'><button type='button' style='border-style:none;background-color: rgb(255 255 255 / 0%);font-size: 14px;' id='" + element.lineItemId + "' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></div></label>");
+                    html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='" + element.lineItemId + "' id='" + element.lineItemId + "'><label class='m-0 hide-arrow' style='color:black' for='" + element.lineItemId + "'><div class='row'><div class='col-4 item-class p-0'></div><div class='col-8 item-class'><div class='itemName'>" + element.productName + "</div><div class='row'><div class='col-12 col-sm-12 col-md-4 col-lg-4'><div class='itemAction'>Action / Sub action : " + element.actionSub + "</div></div><div class='col-12 col-sm-12 col-md-4 col-lg-4'><div class='ItemCharges'>Onetime Charge : $ " + element.oneTimeCharge + "</div></div><div class='col-12 col-sm-12 col-md-4 col-lg-4'><div class='ItemCharges'>Recurring Charge : $ " + element.recurringCharge + "</div></div></div><div class='trashbutton'id='" + element.parentItemId + "' style='display:none'><button type='button' style='border-style:none;background-color: rgb(255 255 255 / 0%);font-size: 14px;' id='" + element.lineItemId + "' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></div></label>");
                 } else {
-                    html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='" + element.lineItemId + "' id='" + element.lineItemId + "'><label class='m-0' style='color:black' for='" + element.lineItemId + "'><div class='row'><!--div class='col-4 item-class p-0'><img class='product-img' src='https://firebasestorage.googleapis.com/v0/b/imageshop-ac764.appspot.com/o/Images%2FaltImg.png?alt=media&token=e9373c07-fbf4-4b37-a743-ed22afb57317'/></div--><div class='col-12 item-class'><div class='itemName'>" + element.productName + "</div><div class='itemAction'>Action / Sub action : " + element.actionSub + "</div><div class='ItemCharges'>Onetime Charge : $ " + element.oneTimeCharge + "</div><div class='ItemCharges'>Recurring Charge : $ " + element.recurringCharge + "</div><div class='trashbutton'id='" + element.parentItemId + "' style='display:none'><button type='button' style='border-style:none;background-color: rgb(255 255 255 / 0%);font-size: 14px;' id='" + element.lineItemId + "' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></div></label>");
+                    html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='" + element.lineItemId + "' id='" + element.lineItemId + "'><label class='m-0' style='color:black' for='" + element.lineItemId + "'><div class='row'><div class='col-4 item-class p-0'><img class='product-img' src="+element.imgUrl+"/></div><div class='col-8 item-class'><div class='itemName'>" + element.productName + "</div><div class='row'><div class='col-12 col-sm-12 col-md-4 col-lg-4'><div class='itemAction'>Action / Sub action : " + element.actionSub + "</div></div><div class='col-12 col-sm-12 col-md-4 col-lg-4'><div class='ItemCharges'>Onetime Charge : $ " + element.oneTimeCharge + "</div></div><div class='col-12 col-sm-12 col-md-4 col-lg-4'><div class='ItemCharges'>Recurring Charge : $ " + element.recurringCharge + "</div></div></div><div class='trashbutton'id='" + element.parentItemId + "' style='display:none'><button type='button' style='border-style:none;background-color: rgb(255 255 255 / 0%);font-size: 14px;' id='" + element.lineItemId + "' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></div></label>");
 
                 }
                 if (element._children) {
@@ -157,7 +157,7 @@
 
         @media only screen and (max-width: 768px) {
             .product-img {
-                height: 60px;
+                height: 90px;
                 object-fit: cover;
                 width: 100%;
             }
