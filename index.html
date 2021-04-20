@@ -22,9 +22,9 @@
             var url_string, url, dataString, dataObject, htmlData, nullIdList, i, targetElement, textLabel, targetParent, targetChild;
             url_string = window.location
             url = new URL(url_string);
-            console.log("________________>"JSON.stringify(url.searchParams.get("data")))
             dataString = url.searchParams.get("data");
 
+            console.log("________________>"JSON.stringify(dataString))
             dataObject = JSON.parse(dataString);
 
             createList(dataObject);
