@@ -24,7 +24,7 @@
             url = new URL(url_string);
             dataString = url.searchParams.get("data");
 
-            console.log("________________>"JSON.stringify(dataString))
+            console.log("________________>"+JSON.stringify(dataString))
             dataObject = JSON.parse(dataString);
 
             createList(dataObject);
