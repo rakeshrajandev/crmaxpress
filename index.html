@@ -24,7 +24,8 @@
             url = new URL(url_string);
             var test =  url.searchParams.get("data");
             //dataString = url.searchParams.get("data");
-          var test2 = JSON.stringify(test);
+            var test2 = JSON.stringify(test);
+            console.log("RR------------------RRR"+test2);
             dataObject = JSON.parse(test2);
             createList(dataObject);
 
