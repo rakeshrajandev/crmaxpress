@@ -1,213 +1,262 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    </head>
-    <body onload="myFunction()">
-        <div class="review" id="demo"></div>
-        
-        
-        
-<script>
-    
-var html = [];
-var element;
-    
-function myFunction() {
-     
-    var url_string, url, dataString, dataObject, htmlData, nullIdList, i, targetElement, textLabel, targetParent, targetChild;
-    url_string = window.location
-    url = new URL(url_string);
+<html>
 
-    dataString = url.searchParams.get("data");
-    
-    dataObject = JSON.parse(dataString);
-    
-    createList(dataObject);
-    
-    
-    htmlData = html.join('');
-    
-    console.log('htmlData' + htmlData);
-    document.getElementById("demo").innerHTML = htmlData;
-    
-    nullIdList = document.querySelectorAll("#null");
-        
-   for(i=0;i<nullIdList.length;i++){
-        targetParent = nullIdList[i].parentElement;
-        
-        targetChild = targetParent.firstElementChild;
-        //console.log(targetChild);
-        textLabel = targetChild.textContent;
-  
-        if(textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") {
-  
-        }
-        else{
-   
-        nullIdList[i].style.display = "block";
-        }
-   }    
-}
-    
-function createList(arr) {
-    
-    html.push("<ul class='list-group cd-accordion-menu animated'>");
-        for(element of arr){
-            if (!element._children){
-                //console.log('no childrens');
-             html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='"+element.lineItemId+"' id='"+element.lineItemId+"'><label class='m-0 hide-arrow' style='color:black' for='"+element.lineItemId+"'><div class='row'><div class='col-sm-3 item-class' style='width:100px'>"+element.productName+"</div><div class='col-sm-3'>"+element.actionSub+"</div><div class='col-sm-2' style='text-align:left;'>"+element.oneTimeCharge+"</div><div class='col-sm-2'style='text-align:left;'>"+element.recurringCharge+"</div><div class='col-sm-2 trashbutton'id='"+element.parentItemId+"' style='text-align:right;display:none'><button type='button' style='border-style:none;background-color: white;font-size: 16px;' id='"+element.lineItemId+"' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></label>");
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+
+<body onload="myFunction()">
+    <div class="review" id="demo"></div>
+
+
+
+    <script>
+        var html = [];
+        var element;
+
+        function myFunction() {
+
+            var url_string, url, dataString, dataObject, htmlData, nullIdList, i, targetElement, textLabel, targetParent, targetChild;
+            url_string = window.location
+            url = new URL(url_string);
+
+            dataString = url.searchParams.get("data");
+
+            dataObject = JSON.parse(dataString);
+
+            createList(dataObject);
+
+
+            htmlData = html.join('');
+
+            console.log('htmlData' + htmlData);
+            document.getElementById("demo").innerHTML = htmlData;
+
+            nullIdList = document.querySelectorAll("#null");
+
+            for (i = 0; i < nullIdList.length; i++) {
+                targetParent = nullIdList[i].parentElement;
+
+                targetChild = targetParent.firstElementChild;
+                //console.log(targetChild);
+                textLabel = targetChild.textContent;
+
+                if (textLabel === "Standard Shipping Fee" || textLabel === "Premium Shipping Fee" || textLabel === "Replacement Fee" || textLabel === "Number Change Fee") {
+
+                } else {
+
+                    nullIdList[i].style.display = "block";
+                }
             }
-            else{
-             html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='"+element.lineItemId+"' id='"+element.lineItemId+"'><label class='m-0' style='color:black' for='"+element.lineItemId+"'><div class='row'><div class='col-sm-3 item-class' style='width:100px'>"+element.productName+"</div><div class='col-sm-3'>"+element.actionSub+"</div><div class='col-sm-2' style='text-align:left;'>"+element.oneTimeCharge+"</div><div class='col-sm-2'style='text-align:left;'>"+element.recurringCharge+"</div><div class='col-sm-2 trashbutton'id='"+element.parentItemId+"' style='text-align:right;display:none'><button type='button' style='border-style:none;background-color: white;font-size: 16px;' id='"+element.lineItemId+"' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></label>");
-               
-            }
-            if (element._children) {
-                createList(element._children);
-            }
-        
-        html.push("</li>");
         }
-    html.push("</ul>");
 
-}
+        function createList(arr) {
 
-function myDeleteFunction(event){
-    var selectedLineItemId = event.id;
-    window.parent.postMessage([selectedLineItemId], '*');
-    
-}
+            html.push("<ul class='list-group cd-accordion-menu animated'>");
+            for (element of arr) {
+                if (!element._children) {
+                    //console.log('no childrens');
+                    html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='" + element.lineItemId + "' id='" + element.lineItemId + "'><label class='m-0 hide-arrow' style='color:black' for='" + element.lineItemId + "'><div class='row'><!--div class='col-4 item-class p-0'></div--><div class='col-12 item-class'><div class='itemName'>" + element.productName + "</div><div class='itemAction'>Action / Sub action : " + element.actionSub + "</div><div class='ItemCharges'>Onetime Charge : $ " + element.oneTimeCharge + "</div><div class='ItemCharges'>Recurring Charge : $ " + element.recurringCharge + "</div><div class='trashbutton'id='" + element.parentItemId + "' style='display:none'><button type='button' style='border-style:none;background-color: rgb(255 255 255 / 0%);font-size: 14px;' id='" + element.lineItemId + "' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></div></label>");
+                } else {
+                    html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='" + element.lineItemId + "' id='" + element.lineItemId + "'><label class='m-0' style='color:black' for='" + element.lineItemId + "'><div class='row'><!--div class='col-4 item-class p-0'><img class='product-img' src='https://firebasestorage.googleapis.com/v0/b/imageshop-ac764.appspot.com/o/Images%2FaltImg.png?alt=media&token=e9373c07-fbf4-4b37-a743-ed22afb57317'/></div--><div class='col-12 item-class'><div class='itemName'>" + element.productName + "</div><div class='itemAction'>Action / Sub action : " + element.actionSub + "</div><div class='ItemCharges'>Onetime Charge : $ " + element.oneTimeCharge + "</div><div class='ItemCharges'>Recurring Charge : $ " + element.recurringCharge + "</div><div class='trashbutton'id='" + element.parentItemId + "' style='display:none'><button type='button' style='border-style:none;background-color: rgb(255 255 255 / 0%);font-size: 14px;' id='" + element.lineItemId + "' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></div></label>");
 
-</script>
+                }
+                if (element._children) {
+                    createList(element._children);
+                }
 
-<style>
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
+                html.push("</li>");
+            }
+            html.push("</ul>");
 
-html {
-  font-size: 40%;
+        }
 
-}
+        function myDeleteFunction(event) {
+            var selectedLineItemId = event.id;
+            window.parent.postMessage([selectedLineItemId], '*');
 
-body {
-  font-size: 1.2rem;
-  font-family: "Jaldi", sans-serif;
-  color: #ffffff;
-  /*
+        }
+
+    </script>
+
+    <style>
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 40%;
+
+        }
+
+        body {
+            font-size: 1.2rem;
+            font-family: "Jaldi", sans-serif;
+            color: #ffffff;
+            /*
     background-color: #a0f6aa;
     */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-a {
-  color: #a0f6aa;
-  text-decoration: none;
-}
+        .product-img {
+            height: 120px;
+        }
 
-h1 {
-  text-align: center;
-  width: 90%;
-  margin: 2em auto 0;
-  font-size: 2.2rem;
-  color: #507b55;
-  font-weight: bold;
-}
+        a {
+            color: #a0f6aa;
+            text-decoration: none;
+        }
 
-@media only screen and (min-width: 600px) {
-  h1 {
-    font-size: 3.2rem;
-  }
-}
+        .itemName {
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
 
-input {
-  font-family: "Jaldi", sans-serif;
-  font-size: 1.6rem;
-}
+        .ItemCharges {
+            color: #696969;
+            font-size: 12px;
+        }
 
-h1 a {color:#121212;text-decoration:underline}
-/* -------------------------------- 
+        .itemAction {
+            color: #008c20;
+            font-size: 10px;
+            font-weight: normal;
+            background-color: #f1f1f1;
+            border-radius: 20px;
+            padding: 2px 6px;
+            display: inline-block;
+        }
+
+        .trashbutton {
+            position: absolute;
+            right: 0px;
+            top: -10px;
+        }
+
+        .bi-trash {
+            color: #c23934;
+        }
+
+        h1 {
+            text-align: center;
+            width: 90%;
+            margin: 2em auto 0;
+            font-size: 2.2rem;
+            color: #507b55;
+            font-weight: bold;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .product-img {
+                height: 60px;
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+
+        @media only screen and (min-width: 600px) {
+            h1 {
+                font-size: 3.2rem;
+            }
+        }
+
+        input {
+            font-family: "Jaldi", sans-serif;
+            font-size: 1.6rem;
+        }
+
+        h1 a {
+            color: #121212;
+            text-decoration: underline
+        }
+
+        /* -------------------------------- 
 Main Components 
 -------------------------------- */
 
-.cd-accordion-menu {
-  
-  
-  background: #4d5158;
-  /*margin: 4em auto;
+        .cd-accordion-menu {
+
+
+            background: #4d5158;
+            /*margin: 4em auto;
     width: 90%;
     max-width: 600px;
   box-shadow: 0 4px 40px #70ac76;
     */
-}
+        }
 
-.cd-accordion-menu ul {
-  /* by default hide all sub menus */
-  display: none;
-  height:0px;
-  transition:all 0.5s ease-in-out
-}
+        .cd-accordion-menu ul {
+            /* by default hide all sub menus */
+            display: none;
+            height: 0px;
+            transition: all 0.5s ease-in-out
+        }
 
-.cd-accordion-menu li {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
+        .cd-accordion-menu li {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
 
-.cd-accordion-menu input[type=checkbox] {
-  /* hide native checkbox */
-  position: absolute;
-  opacity: 0;
-}
+        .cd-accordion-menu input[type=checkbox] {
+            /* hide native checkbox */
+            position: absolute;
+            opacity: 0;
+        }
 
-.cd-accordion-menu label,
-.cd-accordion-menu a {
-  position: relative;
-  display: block;
-  padding: 18px 18px 18px 64px;
-  background: #ffffff;
-  /*box-shadow: inset 0 -1px #555960;*/
-  color: #000000;
+        .cd-accordion-menu label,
+        .cd-accordion-menu a {
+            position: relative;
+            display: block;
+            padding: 18px 18px 18px 64px;
+            background: #ffffff;
+            /*box-shadow: inset 0 -1px #555960;*/
+            color: #000000;
 
-}
+        }
 
-.no-touch .cd-accordion-menu label:hover,
-.no-touch .cd-accordion-menu a:hover {
-  background: #52565d;
-}
+        .no-touch .cd-accordion-menu label:hover,
+        .no-touch .cd-accordion-menu a:hover {
+            background: #52565d;
+        }
 
-.cd-accordion-menu label::before,
-.cd-accordion-menu label::after,
-.cd-accordion-menu a::after {
-  /* icons */
-  content: '';
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
+        .cd-accordion-menu label::before,
+        .cd-accordion-menu label::after,
+        .cd-accordion-menu a::after {
+            /* icons */
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
 
-.cd-accordion-menu label {
-  cursor: pointer;
-}
+        .cd-accordion-menu label {
+            cursor: pointer;
+        }
 
-.cd-accordion-menu label::before,
-.cd-accordion-menu label::after {
-     background-image:
-  url(https://firebasestorage.googleapis.com/v0/b/imageshop-ac764.appspot.com/o/Images%2FAccord.png?alt=media&token=ce6cdd94-e724-4536-8193-d7810b8fde5d);
+        .cd-accordion-menu label::before,
+        .cd-accordion-menu label::after {
+            background-image:
+                url(https://firebasestorage.googleapis.com/v0/b/imageshop-ac764.appspot.com/o/Images%2FAccord.png?alt=media&token=ce6cdd94-e724-4536-8193-d7810b8fde5d);
 
-  /*    
+            /*    
   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNjRweCIgaGVpZ2h0PSIxNnB4IiB2aWV3Qm94PSIwIDAgNjQgMTYiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDY0IDE2IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj4NCgk8cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjgsMTIuNjAwMDAwNCAwLjMsNC45MDAwMDAxIDEuNywzLjQwMDAwMDEgOCw5LjY5OTk5OTggMTQuMzAwMDAwMiwzLjQwMDAwMDEgMTUuNjk5OTk5OCw0LjkwMDAwMDEgDQoJCQkiLz4NCjwvZz4NCjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE2LCAwKSI+DQoJPHBhdGggZmlsbD0iIzZDNzA3OSIgZD0iTTE1LDNIOC4zOTk5OTk2TDUuNjk5OTk5OCwwLjNDNS41LDAuMSw1LjMwMDAwMDIsMCw1LDBIMUMwLjQsMCwwLDAuNCwwLDF2MTRjMCwwLjYwMDAwMDQsMC40LDEsMSwxaDE0DQoJCWMwLjYwMDAwMDQsMCwxLTAuMzk5OTk5NiwxLTFWNEMxNiwzLjQwMDAwMDEsMTUuNjAwMDAwNCwzLDE1LDN6Ii8+DQo8L2c+DQo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMiwgMCkiPg0KCTxwYXRoIGZpbGw9IiM2QzcwNzkiIGQ9Ik0xNS44MDAwMDAyLDcuNDAwMDAwMUMxNS42MDAwMDA0LDcuMTk5OTk5OCwxNS4zMDAwMDAyLDcsMTUsN0g0DQoJCUMzLjU5OTk5OTksNywzLjIsNy4xOTk5OTk4LDMuMDk5OTk5OSw3LjU5OTk5OTlsLTMsNy4wMDAwMDA1Qy0wLjEsMTUuMTk5OTk5OCwwLjEsMTYsMSwxNmgxMQ0KCQljMC4zOTk5OTk2LDAsMC44MDAwMDAyLTAuMTk5OTk5OCwwLjg5OTk5OTYtMC42MDAwMDA0bDMtN0MxNi4xMDAwMDA0LDguMTAwMDAwNCwxNiw3LjY5OTk5OTgsMTUuODAwMDAwMiw3LjQwMDAwMDF6Ii8+DQoJPHBhdGggZmlsbD0iIzZDNzA3OSIgZD0iTTEuMiw2LjgwMDAwMDJDMS43LDUuNjk5OTk5OCwyLjgsNSw0LDVoOVYzYzAtMC41OTk5OTk5LTAuMzk5OTk5Ni0xLTEtMUg2LjQwMDAwMDFMNC42OTk5OTk4LDAuMw0KCQlDNC41LDAuMSw0LjMwMDAwMDIsMCw0LDBIMUMwLjQsMCwwLDAuNCwwLDF2OC42OTk5OTk4TDEuMiw2LjgwMDAwMDJ6Ii8+DQo8L2c+DQo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0OCwgMCkiPg0KCTxwYXRoIGZpbGw9IiM2QzcwNzkiIGQ9Ik0xNSwwSDFDMC40LDAsMCwwLjQsMCwxdjE0YzAsMC42MDAwMDA0LDAuNCwxLDEsMWgxNGMwLjYwMDAwMDQsMCwxLTAuMzk5OTk5NiwxLTFWMQ0KCQlDMTYsMC40LDE1LjYwMDAwMDQsMCwxNSwweiBNNiw0YzAuNTk5OTk5OSwwLDEsMC40MDAwMDAxLDEsMVM2LjU5OTk5OTksNiw2LDZTNSw1LjU5OTk5OTksNSw1UzUuNDAwMDAwMSw0LDYsNHogTTMsMTJsMi00bDIsMmwzLTQNCgkJbDMsNkgzeiIvPg0KPC9nPg0KPC9zdmc+DQo=);
   background-color: red;
     
@@ -215,79 +264,80 @@ Main Components
 .cd-accordion-menu ul label, .cd-accordion-menu ul a {
     /* padding-left: 106px;
   */
-}
+        }
 
-.cd-accordion-menu label::before {
-  /* arrow icon */
-  left: 18px;
-  background-position: 0 0;
-  -webkit-transform: translateY(-50%) rotate(-90deg);
-  -moz-transform: translateY(-50%) rotate(-90deg);
-  -ms-transform: translateY(-50%) rotate(-90deg);
-  -o-transform: translateY(-50%) rotate(-90deg);
-  transform: translateY(-50%) rotate(-90deg);
-    color: #000000;
-}
+        .cd-accordion-menu label::before {
+            /* arrow icon */
+            left: 18px;
+            background-position: 0 0;
+            -webkit-transform: translateY(-50%) rotate(-90deg);
+            -moz-transform: translateY(-50%) rotate(-90deg);
+            -ms-transform: translateY(-50%) rotate(-90deg);
+            -o-transform: translateY(-50%) rotate(-90deg);
+            transform: translateY(-50%) rotate(-90deg);
+            color: #000000;
+        }
 
-.cd-accordion-menu label::after {
-  /* folder icons */
-  left: 41px;
-  background-position: -16px 0;
-}
+        .cd-accordion-menu label::after {
+            /* folder icons */
+            left: 41px;
+            background-position: -16px 0;
+        }
 
-.cd-accordion-menu a::after {
-  /* image icon */
-  left: 36px;
-  background:
-  url(https://firebasestorage.googleapis.com/v0/b/imageshop-ac764.appspot.com/o/Images%2FAccord.png?alt=media&token=ce6cdd94-e724-4536-8193-d7810b8fde5d) no-repeat -48px 0;
-  /*    
+        .cd-accordion-menu a::after {
+            /* image icon */
+            left: 36px;
+            background:
+                url(https://firebasestorage.googleapis.com/v0/b/imageshop-ac764.appspot.com/o/Images%2FAccord.png?alt=media&token=ce6cdd94-e724-4536-8193-d7810b8fde5d) no-repeat -48px 0;
+            /*    
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNjRweCIgaGVpZ2h0PSIxNnB4IiB2aWV3Qm94PSIwIDAgNjQgMTYiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDY0IDE2IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj4NCgk8cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjgsMTIuNjAwMDAwNCAwLjMsNC45MDAwMDAxIDEuNywzLjQwMDAwMDEgOCw5LjY5OTk5OTggMTQuMzAwMDAwMiwzLjQwMDAwMDEgMTUuNjk5OTk5OCw0LjkwMDAwMDEgDQoJCQkiLz4NCjwvZz4NCjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE2LCAwKSI+DQoJPHBhdGggZmlsbD0iIzZDNzA3OSIgZD0iTTE1LDNIOC4zOTk5OTk2TDUuNjk5OTk5OCwwLjNDNS41LDAuMSw1LjMwMDAwMDIsMCw1LDBIMUMwLjQsMCwwLDAuNCwwLDF2MTRjMCwwLjYwMDAwMDQsMC40LDEsMSwxaDE0DQoJCWMwLjYwMDAwMDQsMCwxLTAuMzk5OTk5NiwxLTFWNEMxNiwzLjQwMDAwMDEsMTUuNjAwMDAwNCwzLDE1LDN6Ii8+DQo8L2c+DQo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMiwgMCkiPg0KCTxwYXRoIGZpbGw9IiM2QzcwNzkiIGQ9Ik0xNS44MDAwMDAyLDcuNDAwMDAwMUMxNS42MDAwMDA0LDcuMTk5OTk5OCwxNS4zMDAwMDAyLDcsMTUsN0g0DQoJCUMzLjU5OTk5OTksNywzLjIsNy4xOTk5OTk4LDMuMDk5OTk5OSw3LjU5OTk5OTlsLTMsNy4wMDAwMDA1Qy0wLjEsMTUuMTk5OTk5OCwwLjEsMTYsMSwxNmgxMQ0KCQljMC4zOTk5OTk2LDAsMC44MDAwMDAyLTAuMTk5OTk5OCwwLjg5OTk5OTYtMC42MDAwMDA0bDMtN0MxNi4xMDAwMDA0LDguMTAwMDAwNCwxNiw3LjY5OTk5OTgsMTUuODAwMDAwMiw3LjQwMDAwMDF6Ii8+DQoJPHBhdGggZmlsbD0iIzZDNzA3OSIgZD0iTTEuMiw2LjgwMDAwMDJDMS43LDUuNjk5OTk5OCwyLjgsNSw0LDVoOVYzYzAtMC41OTk5OTk5LTAuMzk5OTk5Ni0xLTEtMUg2LjQwMDAwMDFMNC42OTk5OTk4LDAuMw0KCQlDNC41LDAuMSw0LjMwMDAwMDIsMCw0LDBIMUMwLjQsMCwwLDAuNCwwLDF2OC42OTk5OTk4TDEuMiw2LjgwMDAwMDJ6Ii8+DQo8L2c+DQo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0OCwgMCkiPg0KCTxwYXRoIGZpbGw9IiM2QzcwNzkiIGQ9Ik0xNSwwSDFDMC40LDAsMCwwLjQsMCwxdjE0YzAsMC42MDAwMDA0LDAuNCwxLDEsMWgxNGMwLjYwMDAwMDQsMCwxLTAuMzk5OTk5NiwxLTFWMQ0KCQlDMTYsMC40LDE1LjYwMDAwMDQsMCwxNSwweiBNNiw0YzAuNTk5OTk5OSwwLDEsMC40MDAwMDAxLDEsMVM2LjU5OTk5OTksNiw2LDZTNSw1LjU5OTk5OTksNSw1UzUuNDAwMDAwMSw0LDYsNHogTTMsMTJsMi00bDIsMmwzLTQNCgkJbDMsNkgzeiIvPg0KPC9nPg0KPC9zdmc+DQo=) no-repeat -48px 0;
     */
-   
-}
 
-.cd-accordion-menu input[type=checkbox]:checked + label::before {
-  /* rotate arrow */
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
+        }
 
-.cd-accordion-menu input[type=checkbox]:checked + label::after {
-  /* show open folder icon if item is checked */
-  background-position: -32px 0;
-}
+        .cd-accordion-menu input[type=checkbox]:checked+label::before {
+            /* rotate arrow */
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
 
-.cd-accordion-menu input[type=checkbox]:checked + label + ul,
-.cd-accordion-menu input[type=checkbox]:checked + label:nth-of-type(n) + ul {
-  /* use label:nth-of-type(n) to fix a bug on safari (<= 8.0.8) with multiple adjacent-sibling selectors*/
-  /* show children when item is checked */
-  display: block;
-  transition: all 0.3s ease-in-out;
-height:auto
-}
+        .cd-accordion-menu input[type=checkbox]:checked+label::after {
+            /* show open folder icon if item is checked */
+            background-position: -32px 0;
+        }
 
-.cd-accordion-menu ul label,
-.cd-accordion-menu ul a {
-  background: #ffffff;
-  /*box-shadow: inset 0 -1px #41444a;*/
-  /*padding-left: 82px;*/
-}
+        .cd-accordion-menu input[type=checkbox]:checked+label+ul,
+        .cd-accordion-menu input[type=checkbox]:checked+label:nth-of-type(n)+ul {
+            /* use label:nth-of-type(n) to fix a bug on safari (<= 8.0.8) with multiple adjacent-sibling selectors*/
+            /* show children when item is checked */
+            display: block;
+            transition: all 0.3s ease-in-out;
+            height: auto
+        }
 
-.no-touch .cd-accordion-menu ul label:hover,
-.no-touch .cd-accordion-menu ul a:hover {
-  background: #3c3f45;
-}
+        .cd-accordion-menu ul label,
+        .cd-accordion-menu ul a {
+            background: #ffffff;
+            /*box-shadow: inset 0 -1px #41444a;*/
+            /*padding-left: 82px;*/
+        }
 
-.cd-accordion-menu > li:last-of-type > label,
-.cd-accordion-menu > li:last-of-type > a,
-.cd-accordion-menu > li > ul > li:last-of-type label,
-.cd-accordion-menu > li > ul > li:last-of-type a {
-  box-shadow: none;
-}
-/*
+        .no-touch .cd-accordion-menu ul label:hover,
+        .no-touch .cd-accordion-menu ul a:hover {
+            background: #3c3f45;
+        }
+
+        .cd-accordion-menu>li:last-of-type>label,
+        .cd-accordion-menu>li:last-of-type>a,
+        .cd-accordion-menu>li>ul>li:last-of-type label,
+        .cd-accordion-menu>li>ul>li:last-of-type a {
+            box-shadow: none;
+        }
+
+        /*
 .cd-accordion-menu ul label::before {
   left: 36px;
 }
@@ -364,197 +414,230 @@ height:auto
   }
 }
     */
-    
-    /*--------------------------------------*/
-    
- .cd-accordion-menu ul label::before {
-  left: 36px;
-}
-.cd-accordion-menu ul label::after,
-.cd-accordion-menu ul a::after {
-  left: 59px;
-}
-.cd-accordion-menu ul ul label,
-.cd-accordion-menu ul ul a {
-  /*padding-left: 100px;*/
-}
-.cd-accordion-menu ul ul label::before {
-  left: 54px;
-}
-.cd-accordion-menu ul ul label::after,
-.cd-accordion-menu ul ul a::after {
-  left: 77px;
-}
-.cd-accordion-menu ul ul ul label,
-.cd-accordion-menu ul ul ul a {
-  padding-left: 118px;
-}
-.cd-accordion-menu ul ul ul label::before {
-  left: 72px;
-}
-.cd-accordion-menu ul ul ul label::after,
-.cd-accordion-menu ul ul ul a::after {
-  left: 95px;
-}
-@media only screen and (min-width: 600px) {
-  .cd-accordion-menu label,
-  .cd-accordion-menu a {
-    /*padding: 24px 24px 24px 82px;*/
-  
-  }
-  .cd-accordion-menu label::before {
-    left: 24px;
-  }
-  .cd-accordion-menu label::after {
-    left: 53px;
-  }
-  .cd-accordion-menu ul label,
-  .cd-accordion-menu ul a {
-    /*padding-left: 106px;*/
-  }
-  .cd-accordion-menu ul label::before {
-    left: 48px;
-  }
-  .cd-accordion-menu ul label::after,
-  .cd-accordion-menu ul a::after {
-    left: 77px;
-  }
-  .cd-accordion-menu ul ul label,
-  .cd-accordion-menu ul ul a {
-    /*padding-left: 130px;*/
-  }
-  .cd-accordion-menu ul ul label::before {
-    left: 72px;
-  }
-  .cd-accordion-menu ul ul label::after,
-  .cd-accordion-menu ul ul a::after {
-    left: 101px;
-  }
-  .cd-accordion-menu ul ul ul label,
-  .cd-accordion-menu ul ul ul a {
-    padding-left: 154px;
-  }
-  .cd-accordion-menu ul ul ul label::before {
-    left: 96px;
-  }
-  .cd-accordion-menu ul ul ul label::after,
-  .cd-accordion-menu ul ul ul a::after {
-    left: 125px;
-  }
-}
-    
-    
-    
-    
-    /*---------------------------------------*/
-    
- .cd-accordion-menu ul label div.item-class::before {
-  left: 36px;
-}
 
-.cd-accordion-menu ul label div.item-class::after,
-.cd-accordion-menu ul a div.item-class::after {
-  left: 59px;
-}
+        /*--------------------------------------*/
 
-.cd-accordion-menu ul ul label div.item-class,
-.cd-accordion-menu ul ul a div.item-class {
-  padding-left: 100px;
-}
+        .cd-accordion-menu ul label::before {
+            left: 36px;
+        }
 
-.cd-accordion-menu ul ul label  div.item-class::before {
-  left: 54px;
-}
+        .cd-accordion-menu ul label::after,
+        .cd-accordion-menu ul a::after {
+            left: 59px;
+        }
 
-.cd-accordion-menu ul ul label  div.item-class::after,
-.cd-accordion-menu ul ul a  div.item-class::after {
-  left: 77px;
-}
+        .cd-accordion-menu ul ul label,
+        .cd-accordion-menu ul ul a {
+            /*padding-left: 100px;*/
+        }
 
-.cd-accordion-menu ul ul ul label div.item-class,
-.cd-accordion-menu ul ul ul a div.item-class {
-  padding-left: 118px;
-}
+        .cd-accordion-menu ul ul label::before {
+            left: 54px;
+        }
 
-.cd-accordion-menu ul ul ul label div.item-class::before {
-  left: 72px;
-}
+        .cd-accordion-menu ul ul label::after,
+        .cd-accordion-menu ul ul a::after {
+            left: 77px;
+        }
 
-.cd-accordion-menu ul ul ul label div.item-class::after,
-.cd-accordion-menu ul ul ul a div.item-class::after {
-  left: 95px;
-}
+        .cd-accordion-menu ul ul ul label,
+        .cd-accordion-menu ul ul ul a {
+            padding-left: 118px;
+        }
 
-@media only screen and (min-width: 600px) {
-  .cd-accordion-menu label div.item-class,
-  .cd-accordion-menu a div.item-class {
-    padding: 0px;
-  
-  }
-  .cd-accordion-menu label div.item-class::before {
-    left: 24px;
-  }
-  .cd-accordion-menu label  div.item-class::after {
-    left: 53px;
-  }
-  .cd-accordion-menu ul label div.item-class,
-  .cd-accordion-menu ul a div.item-class {
-    padding-left: 20px;
-  }
-  .cd-accordion-menu ul label div.item-class::before {
-    left: 48px;
-  }
-  .cd-accordion-menu ul label div.item-class::after,
-  .cd-accordion-menu ul a div.item-class::after {
-    left: 77px;
-  }
-  .cd-accordion-menu ul ul label div.item-class,
-  .cd-accordion-menu ul ul a div.item-class {
-    padding-left: 40px;
-  }
-  .cd-accordion-menu ul ul label div.item-class::before {
-    left: 72px;
-  }
-  .cd-accordion-menu ul ul label div.item-class::after,
-  .cd-accordion-menu ul ul a div.item-class::after {
-    left: 101px;
-  }
-  .cd-accordion-menu ul ul ul label div.item-class,
-  .cd-accordion-menu ul ul ul a div.item-class {
-    padding-left: 154px;
-  }
-  .cd-accordion-menu ul ul ul label div.item-class::before {
-    left: 96px;
-  }
-  .cd-accordion-menu ul ul ul label div.item-class::after,
-  .cd-accordion-menu ul ul ul a div.item-class::after {
-    left: 125px;
-  }
-}
+        .cd-accordion-menu ul ul ul label::before {
+            left: 72px;
+        }
+
+        .cd-accordion-menu ul ul ul label::after,
+        .cd-accordion-menu ul ul ul a::after {
+            left: 95px;
+        }
+
+        @media only screen and (min-width: 600px) {
+
+            .cd-accordion-menu label,
+            .cd-accordion-menu a {
+                /*padding: 24px 24px 24px 82px;*/
+
+            }
+
+            .cd-accordion-menu label::before {
+                left: 24px;
+            }
+
+            .cd-accordion-menu label::after {
+                left: 53px;
+            }
+
+            .cd-accordion-menu ul label,
+            .cd-accordion-menu ul a {
+                /*padding-left: 106px;*/
+            }
+
+            .cd-accordion-menu ul label::before {
+                left: 48px;
+            }
+
+            .cd-accordion-menu ul label::after,
+            .cd-accordion-menu ul a::after {
+                left: 77px;
+            }
+
+            .cd-accordion-menu ul ul label,
+            .cd-accordion-menu ul ul a {
+                /*padding-left: 130px;*/
+            }
+
+            .cd-accordion-menu ul ul label::before {
+                left: 72px;
+            }
+
+            .cd-accordion-menu ul ul label::after,
+            .cd-accordion-menu ul ul a::after {
+                left: 101px;
+            }
+
+            .cd-accordion-menu ul ul ul label,
+            .cd-accordion-menu ul ul ul a {
+                padding-left: 154px;
+            }
+
+            .cd-accordion-menu ul ul ul label::before {
+                left: 96px;
+            }
+
+            .cd-accordion-menu ul ul ul label::after,
+            .cd-accordion-menu ul ul ul a::after {
+                left: 125px;
+            }
+        }
 
 
-.cd-accordion-menu.animated label::before {
-  /* this class is used if you're using jquery to animate the accordion */
-  -webkit-transition: -webkit-transform 0.3s;
-  -moz-transition: -moz-transform 0.3s;
-  transition: transform 0.3s;
-}    
-.m-0{
-  font-size: 13px;  
-    color: black;
-    /*font: icon;*/
-}
-    
-label.m-0.hide-arrow::before{
-display:none;
-}
-    
-label.m-0.hide-arrow::after{
-display:none;
-}
-  
-</style>
 
-    </body>
 
-    </html>
+        /*---------------------------------------*/
+
+        .cd-accordion-menu ul label div.item-class::before {
+            left: 36px;
+        }
+
+        .cd-accordion-menu ul label div.item-class::after,
+        .cd-accordion-menu ul a div.item-class::after {
+            left: 59px;
+        }
+
+        .cd-accordion-menu ul ul label div.item-class,
+        .cd-accordion-menu ul ul a div.item-class {
+            padding-left: 100px;
+        }
+
+        .cd-accordion-menu ul ul label div.item-class::before {
+            left: 54px;
+        }
+
+        .cd-accordion-menu ul ul label div.item-class::after,
+        .cd-accordion-menu ul ul a div.item-class::after {
+            left: 77px;
+        }
+
+        .cd-accordion-menu ul ul ul label div.item-class,
+        .cd-accordion-menu ul ul ul a div.item-class {
+            padding-left: 118px;
+        }
+
+        .cd-accordion-menu ul ul ul label div.item-class::before {
+            left: 72px;
+        }
+
+        .cd-accordion-menu ul ul ul label div.item-class::after,
+        .cd-accordion-menu ul ul ul a div.item-class::after {
+            left: 95px;
+        }
+
+        @media only screen and (min-width: 600px) {
+
+            .cd-accordion-menu label div.item-class,
+            .cd-accordion-menu a div.item-class {
+                padding: 0px;
+
+            }
+
+            .cd-accordion-menu label div.item-class::before {
+                left: 24px;
+            }
+
+            .cd-accordion-menu label div.item-class::after {
+                left: 53px;
+            }
+
+            .cd-accordion-menu ul label div.item-class,
+            .cd-accordion-menu ul a div.item-class {
+                padding-left: 20px;
+            }
+
+            .cd-accordion-menu ul label div.item-class::before {
+                left: 48px;
+            }
+
+            .cd-accordion-menu ul label div.item-class::after,
+            .cd-accordion-menu ul a div.item-class::after {
+                left: 77px;
+            }
+
+            .cd-accordion-menu ul ul label div.item-class,
+            .cd-accordion-menu ul ul a div.item-class {
+                padding-left: 40px;
+            }
+
+            .cd-accordion-menu ul ul label div.item-class::before {
+                left: 72px;
+            }
+
+            .cd-accordion-menu ul ul label div.item-class::after,
+            .cd-accordion-menu ul ul a div.item-class::after {
+                left: 101px;
+            }
+
+            .cd-accordion-menu ul ul ul label div.item-class,
+            .cd-accordion-menu ul ul ul a div.item-class {
+                padding-left: 154px;
+            }
+
+            .cd-accordion-menu ul ul ul label div.item-class::before {
+                left: 96px;
+            }
+
+            .cd-accordion-menu ul ul ul label div.item-class::after,
+            .cd-accordion-menu ul ul ul a div.item-class::after {
+                left: 125px;
+            }
+        }
+
+
+        .cd-accordion-menu.animated label::before {
+            /* this class is used if you're using jquery to animate the accordion */
+            -webkit-transition: -webkit-transform 0.3s;
+            -moz-transition: -moz-transform 0.3s;
+            transition: transform 0.3s;
+        }
+
+        .m-0 {
+            font-size: 13px;
+            color: black;
+            /*font: icon;*/
+        }
+
+        label.m-0.hide-arrow::before {
+            display: none;
+        }
+
+        label.m-0.hide-arrow::after {
+            display: none;
+        }
+
+    </style>
+
+</body>
+
+</html>
