@@ -23,12 +23,6 @@
             url_string = window.location
             url = new URL(url_string);
             dataString = url.searchParams.get("data");
-            
-window.addEventListener('cors_event', function(event) {
-    if(event.data.event_id === 'my_cors_message'){
-        console.log(event.data.data);
-    }
-});
             dataObject = JSON.parse(dataString);
 
             createList(dataObject);
