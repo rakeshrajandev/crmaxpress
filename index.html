@@ -24,13 +24,11 @@
             url = new URL(url_string);
             dataString = url.searchParams.get("data");
             dataObject = JSON.parse(dataString);
-             window.addEventListener('cors_event', (event) => {
-                 console.log("RRRR")
-                  if(event.data.event_id === 'lineItem_Item'){
-                    var lineItemData = event.data.data;
-                    console.log("lineItemData------------>"+JSON.strigify(lineItemData));
+             window.addEventListener('cors_event', function(event) {
+                if(event.data.event_id === 'my_cors_message'){
+                    console.log("-------------------->"+event.data.data);
                 }
-                });
+            });
             createList(dataObject);
 
             htmlData = html.join('');
