@@ -73,6 +73,13 @@
 
         function myDeleteFunction(event) {
             var selectedLineItemId = event.id;
+            window.parent.postMessage(
+            {
+                event_id: 'delete_Item',
+                data: selectedLineItemId
+            }, 
+            "*" 
+            ); 
             window.parent.postMessage([selectedLineItemId], '*');
 
         }
