@@ -27,10 +27,10 @@
  window.addEventListener("message", (event) => {
       if(event.data.event_id === 'lineItem_Item'){
         var lineItemData = event.data.data;
-        console.log("lineItemData------------>"+lineItemData)
+        console.log("lineItemData------------>"+JSON.strigify(lineItemData));
     }
     });
-            createList(dataObject);
+            createList(lineItemData);
 
             htmlData = html.join('');
 
