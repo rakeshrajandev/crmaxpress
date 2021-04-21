@@ -24,7 +24,12 @@
             url = new URL(url_string);
             dataString = url.searchParams.get("data");
             dataObject = JSON.parse(dataString);
-
+ window.addEventListener("message", (event) => {
+      if(event.data.event_id === 'lineItem_Item'){
+        var lineItemData = event.data.data;
+        console.log("lineItemData------------>"+lineItemData)
+    }
+    });
             createList(dataObject);
 
             htmlData = html.join('');
