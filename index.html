@@ -27,8 +27,7 @@
             console.log("________________>"+JSON.stringify(dataString))
             dataObject = JSON.parse(dataString);
 
-           // createList(dataObject);
-getOrderInfo()
+           createList(dataObject);
 
             htmlData = html.join('');
 
@@ -52,23 +51,7 @@ getOrderInfo()
                 }
             }
         }
-function getOrderInfo(){
-            var recordObj = { "OrderId": "8016w000000D0sqAAC" };
-            
-            let request = new XMLHttpRequest()
-        request.open("GET", 'https://crmaxpress-updateattribute.cs169.force.com/GetCatalog/services/apexrest/SFRestdata/?IpName=crma_OrderReviewDetails&IpParam=' + JSON.stringify(recordObj)+'&1');
-        request.send();
-        request.onload = () => {
-            if (request.status === 200) {
-                let result = JSON.parse(request.response);
-                console.log("JJJ"+JSON.stringify(result));
 
-
-            } else {
-                console.log("Page not found")// if link is broken, output will be page not found
-            }
-        }
-        }
         function createList(arr) {
 
             html.push("<ul class='list-group cd-accordion-menu animated'>");
