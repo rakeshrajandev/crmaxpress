@@ -28,8 +28,9 @@
             var encrypted = CryptoJS.AES.encrypt(plainText, secret);
             var decrypted = CryptoJS.AES.decrypt(encrypted, secret);
             var orginalValue = decrypted.toString(CryptoJS.enc.Utf8);
-            console.log("orginalValue"+orginalValue)
-            var abc = JSON.stringify(orginalValue)
+           
+            var abc = JSON.stringify(orginalValue);
+             console.log("orginalValue"+abc)
             dataObject = JSON.parse(abc);
             createList(dataObject);
 
