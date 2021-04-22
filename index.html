@@ -16,9 +16,20 @@
     <script>
         var html = [];
         var element;
-
+        function getOrder() {
+                    let request = new XMLHttpRequest()
+                    request.open("GET", "https://crmaxpress-updateattribute.cs169.force.com/GetCatalog/services/apexrest/SFRestdata/?IpName=crma_OrderReviewDetails&IpParam={'OrderId':'8016w000000D0XwAAK'}");
+                    request.send();
+                    request.onload = () => {
+                        if (request.status === 200) {
+                            console.log(JSON.parse(request.response))
+                        } else {
+                            console.log("Page not found") // if link is broken, output will be page not found
+                        }
+                    }
+                }
         function myFunction() {
-
+           getOrder();
             var url_string, url, dataString, dataObject, htmlData, nullIdList, i, targetElement, textLabel, targetParent, targetChild;
             url_string = window.location
             url = new URL(url_string);
