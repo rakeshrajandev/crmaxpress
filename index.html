@@ -23,7 +23,7 @@
             url = new URL(url_string);
             dataString = url.searchParams.get("data");
             
-            createList("URL-------------"+dataString);
+            console.log("URL-------------"+dataString);
             var secret = "My Secret Passphrase";
             var plainText = dataString;
             var encrypted = CryptoJS.AES.encrypt(plainText, secret);
