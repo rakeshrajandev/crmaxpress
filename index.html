@@ -23,15 +23,14 @@
             url = new URL(url_string);
             dataString = url.searchParams.get("data");
             
+            createList("URL-------------"+dataString);
             var secret = "My Secret Passphrase";
             var plainText = dataString;
             var encrypted = CryptoJS.AES.encrypt(plainText, secret);
             var decrypted = CryptoJS.AES.decrypt(encrypted, secret);
             var orginalValue = decrypted.toString(CryptoJS.enc.Utf8);
-           
-            var abc = JSON.stringify(orginalValue);
-             console.log("orginalValue"+abc)
-            dataObject = JSON.parse(abc);
+            console.log("orginalValue"+orginalValue)
+            dataObject = JSON.parse(orginalValue);
             createList(dataObject);
 
             htmlData = html.join('');
