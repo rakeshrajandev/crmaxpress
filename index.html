@@ -29,8 +29,8 @@
             var decrypted = CryptoJS.AES.decrypt(encrypted, secret);
             var orginalValue = decrypted.toString(CryptoJS.enc.Utf8);
             console.log("orginalValue"+orginalValue)
-            
-            dataObject = JSON.parse(orginalValue);
+            var abc = JSON.stringify(orginalValue)
+            dataObject = JSON.parse(abc);
             createList(dataObject);
 
             htmlData = html.join('');
