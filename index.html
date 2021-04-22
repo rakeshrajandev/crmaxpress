@@ -10,14 +10,6 @@
 </head>
 
 <body onload="myFunction()">
-    <label>encrypted</label>
-<div id="m1"></div>
-<br>
-<label>decrypted</label>
-<div id="m2"></div>
-<br>
-<label>Original message</label>
-<div id="m3"></div>
     <div class="review" id="demo"></div>
 
 
@@ -32,16 +24,13 @@
             dataString = url.searchParams.get("data");
             
             var secret = "My Secret Passphrase";
-            var plainText = "the brown fox jumped over the lazy dog";
+            var plainText = dataString;
             var encrypted = CryptoJS.AES.encrypt(plainText, secret);
             var decrypted = CryptoJS.AES.decrypt(encrypted, secret);
-
-            document.getElementById("m1").innerHTML = encrypted;
-            document.getElementById("m2").innerHTML = decrypted;
-            document.getElementById("m3").innerHTML = decrypted.toString(CryptoJS.enc.Utf8);
+            var orginalValue = decrypted.toString(CryptoJS.enc.Utf8);
+            console.log(orginalValue)
             
-            
-            dataObject = JSON.parse(dataString);
+            dataObject = JSON.parse(orginalValue);
             createList(dataObject);
 
             htmlData = html.join('');
