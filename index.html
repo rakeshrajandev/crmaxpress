@@ -22,15 +22,9 @@
             url_string = window.location
             url = new URL(url_string);
             dataString = url.searchParams.get("data");
-            
-            console.log("URL-------------"+dataString);
-            var secret = "My Secret Passphrase";
-            var plainText = dataString;
-            var encrypted = CryptoJS.AES.encrypt(plainText, secret);
-            var decrypted = CryptoJS.AES.decrypt(encrypted, secret);
-            var orginalValue = decrypted.toString(CryptoJS.enc.Utf8);
-            console.log("orginalValue"+orginalValue)
-            dataObject = JSON.parse(orginalValue);
+            var decriptedJson = window.atob(dataString); 
+            console.log("------------------->"+decriptedJson);
+            dataObject = JSON.parse(decriptedJson);
             createList(dataObject);
 
             htmlData = html.join('');
