@@ -24,7 +24,6 @@
             //dataReview = JSON.parse(decriptedReview);
             //dataReview = JSON.parse(isReview);
             console.log('isReview--->' + isReview);
-        dataReview = document.getElementById("isReview").value;
         
         function myFunction() {
             var url_string, url, dataString, dataObject, htmlData, nullIdList, i, targetElement, textLabel, targetParent, targetChild;
@@ -63,7 +62,7 @@
 
             html.push("<ul class='list-group cd-accordion-menu animated'>");
             for (element of arr) {
-                if (dataReview === "true") {
+                if (isReview === true) {
                 if (!element._children) {
                     //console.log('no childrens');
                     html.push("<li class='p-0 list-group-item has-children'><input type='checkbox' name='" + element.lineItemId + "' id='" + element.lineItemId + "'><label class='m-0 hide-arrow' style='color:black' for='" + element.lineItemId + "'><div class='row'><div class='col-3 col-sm-3 col-md-3 item-class p-0'></div><div class='col-9 col-sm-9 col-md-9'><div class='itemName'>" + element.productName + "</div><div class='row'><div class='col-12 col-sm-4 col-md-4 col-lg-4'><div class='itemAction'>Action / Sub action : " + element.actionSub + "</div></div><div class='col-12 col-sm-4 col-md-4 col-lg-4'><div class='ItemCharges'>Onetime Charge : $ " + element.oneTimeCharge + "</div></div><div class='col-12 col-sm-4 col-md-4 col-lg-4'><div class='ItemCharges'>Recurring Charge : $ " + element.recurringCharge + "</div></div></div><div class='trashbutton'id='" + element.parentItemId + "' style='display:none'><button type='button' style='border-style:none;background-color: rgb(255 255 255 / 0%);font-size: 14px;' id='" + element.lineItemId + "' onclick='myDeleteFunction(this)'><i class='bi-trash'></i></button></div></div></div></label>");
