@@ -16,9 +16,9 @@
 
     <script>
         var html = [];
-        var element;
+        var element, isReview , dataReview;
         function myFunction() {
-            var url_string, url, dataString, dataObject, htmlData, nullIdList, i, targetElement, textLabel, targetParent, targetChild , isReview , dataReview;
+            var url_string, url, dataString, dataObject, htmlData, nullIdList, i, targetElement, textLabel, targetParent, targetChild;
             url_string = window.location
             url = new URL(url_string);
             dataString = url.searchParams.get("data");
