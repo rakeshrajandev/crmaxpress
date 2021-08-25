@@ -29,6 +29,13 @@
             htmlData = html.join('');
 
             console.log('htmlData' + htmlData);
+            
+            isReview = url.searchParams.get("isReview");
+            var decriptedReview = window.atob(isReview);
+            dataReview = JSON.parse(decriptedReview);
+            //dataReview = JSON.parse(isReview);
+            console.log('isReview--->' + dataReview);
+            
             document.getElementById("demo").innerHTML = htmlData;
 
             nullIdList = document.querySelectorAll("#null");
@@ -48,11 +55,7 @@
                 }
             }
         }
-        isReview = url.searchParams.get("isReview");
-            var decriptedReview = window.atob(isReview);
-            dataReview = JSON.parse(decriptedReview);
-            //dataReview = JSON.parse(isReview);
-            console.log('isReview--->' + dataReview);
+        
 
         function createList(arr) {
 
