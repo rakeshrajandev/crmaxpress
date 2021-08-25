@@ -27,9 +27,9 @@
             createList(dataObject);
             isReview = url.searchParams.get("isReview");
             var decriptedReview = window.atob(isReview);
-            //dataReview = JSON.parse(decriptedReview);
+            dataReview = JSON.parse(decriptedReview);
             //dataReview = JSON.parse(isReview);
-            console.log('isReview--->' + decriptedReview);
+            console.log('isReview--->' + dataReview);
             htmlData = html.join('');
 
             console.log('htmlData' + htmlData);
