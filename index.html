@@ -24,13 +24,16 @@
             dataString = url.searchParams.get("data");
             var decriptedJson = window.atob(dataString); 
             dataObject = JSON.parse(decriptedJson);
-            createList(dataObject);
             
             isReview = url.searchParams.get("isReview");
             //var decriptedReview = window.atob(isReview);
             //dataReview = JSON.parse(decriptedReview);
             //dataReview = JSON.parse(isReview);
             console.log('isReview--->' + isReview);
+            
+            createList(dataObject);
+            
+            
            
             htmlData = html.join('');
             console.log('htmlData' + htmlData); 
