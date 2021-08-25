@@ -25,17 +25,15 @@
             var decriptedJson = window.atob(dataString); 
             dataObject = JSON.parse(decriptedJson);
             createList(dataObject);
-          
-            htmlData = html.join('');
-
-            console.log('htmlData' + htmlData);
             
             isReview = url.searchParams.get("isReview");
             var decriptedReview = window.atob(isReview);
             dataReview = JSON.parse(decriptedReview);
             //dataReview = JSON.parse(isReview);
             console.log('isReview--->' + dataReview);
-            
+           
+            htmlData = html.join('');
+            console.log('htmlData' + htmlData); 
             document.getElementById("demo").innerHTML = htmlData;
 
             nullIdList = document.querySelectorAll("#null");
