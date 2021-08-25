@@ -23,7 +23,9 @@
             url = new URL(url_string);
             dataString = url.searchParams.get("data");
             isReview = url.searchParams.get("isReview");
-            console.log('isReview--->' + isReview);
+            var decriptedReview = window.atob(isReview);
+            dataReview = JSON.parse(decriptedReview);
+            console.log('isReview--->' + dataReview);
             var decriptedJson = window.atob(dataString); 
             dataObject = JSON.parse(decriptedJson);
             createList(dataObject);
