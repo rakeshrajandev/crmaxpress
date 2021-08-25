@@ -16,7 +16,15 @@
 
     <script>
         var html = [];
-        var element, isReview , dataReview;
+        var element, isReview , dataReview, url_string, url;
+        url_string = window.location
+        url = new URL(url_string);
+        isReview = url.searchParams.get("isReview");
+            //var decriptedReview = window.atob(isReview);
+            //dataReview = JSON.parse(decriptedReview);
+            //dataReview = JSON.parse(isReview);
+            console.log('isReview--->' + isReview);
+        
         function myFunction() {
             var url_string, url, dataString, dataObject, htmlData, nullIdList, i, targetElement, textLabel, targetParent, targetChild;
             url_string = window.location
@@ -25,16 +33,8 @@
             var decriptedJson = window.atob(dataString); 
             dataObject = JSON.parse(decriptedJson);
             
-            isReview = url.searchParams.get("isReview");
-            //var decriptedReview = window.atob(isReview);
-            //dataReview = JSON.parse(decriptedReview);
-            //dataReview = JSON.parse(isReview);
-            console.log('isReview--->' + isReview);
-            
             createList(dataObject);
             
-            
-           
             htmlData = html.join('');
             console.log('htmlData' + htmlData); 
             document.getElementById("demo").innerHTML = htmlData;
