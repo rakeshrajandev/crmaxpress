@@ -48,6 +48,11 @@
                 }
             }
         }
+        isReview = url.searchParams.get("isReview");
+            var decriptedReview = window.atob(isReview);
+            dataReview = JSON.parse(decriptedReview);
+            //dataReview = JSON.parse(isReview);
+            console.log('isReview--->' + dataReview);
 
         function createList(arr) {
 
