@@ -18,10 +18,12 @@
         var html = [];
         var element;
         function myFunction() {
-            var url_string, url, dataString, dataObject, htmlData, nullIdList, i, targetElement, textLabel, targetParent, targetChild;
+            var url_string, url, dataString, dataObject, htmlData, nullIdList, i, targetElement, textLabel, targetParent, targetChild , isReview;
             url_string = window.location
             url = new URL(url_string);
             dataString = url.searchParams.get("data");
+            isReview = url.searchParams.get("isReview");
+            console.log('isReview--->' + isReview);
             var decriptedJson = window.atob(dataString); 
             dataObject = JSON.parse(decriptedJson);
             createList(dataObject);
