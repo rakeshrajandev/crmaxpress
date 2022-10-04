@@ -21,8 +21,8 @@
         url = new URL(url_string);
         isReview = url.searchParams.get("isReview");
             var decriptedReview = isReview;
-            dataReview = JSON.parse(decriptedReview);
-            //console.log('isReview--->' + dataReview);
+            dataReview = decriptedReview;
+            console.log('isReview--->' + dataReview);
         
         function myFunction() {
             var url_string, url, dataString, dataObject, htmlData, nullIdList, i, targetElement, textLabel, targetParent, targetChild;
