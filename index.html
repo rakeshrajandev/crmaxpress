@@ -20,7 +20,7 @@
         url_string = window.location
         url = new URL(url_string);
         isReview = url.searchParams.get("isReview");
-            var decriptedReview = window.atob(isReview);
+            var decriptedReview = isReview;
             dataReview = JSON.parse(decriptedReview);
             //console.log('isReview--->' + dataReview);
         
