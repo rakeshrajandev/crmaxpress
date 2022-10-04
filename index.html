@@ -22,7 +22,7 @@
         isReview = url.searchParams.get("isReview");
             var decriptedReview = window.atob(isReview);
             dataReview = JSON.parse(decriptedReview);
-            console.log('isReview--->' + dataReview);
+            //console.log('isReview--->' + dataReview);
         
         function myFunction() {
             var url_string, url, dataString, dataObject, htmlData, nullIdList, i, targetElement, textLabel, targetParent, targetChild;
@@ -35,7 +35,7 @@
             createList(dataObject);
             
             htmlData = html.join('');
-            console.log('htmlData' + htmlData); 
+            //console.log('htmlData' + htmlData); 
             document.getElementById("demo").innerHTML = htmlData;
 
             nullIdList = document.querySelectorAll("#null");
@@ -60,7 +60,7 @@
         function createList(arr) {
 
             html.push("<ul class='list-group cd-accordion-menu animated'>");
-            console.log("Inside for" +dataReview);
+            //console.log("Inside for" +dataReview);
             for (element of arr) {
                
                 if (dataReview) {
@@ -95,6 +95,7 @@
 
         function myDeleteFunction(event) {
             var selectedLineItemId = event.id;
+            console.log("selected id" +selectedLineItemId);
             window.parent.postMessage(
             {
                 event_id: 'delete_Item',
